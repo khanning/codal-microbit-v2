@@ -674,7 +674,6 @@ void MicroBitBLEManager::onDisconnect()
         advertise();
 }
 
-
     
 #if CONFIG_ENABLED(MICROBIT_BLE_EDDYSTONE_URL)
 /**
@@ -1157,6 +1156,10 @@ static void microbit_ble_configureAdvertising( bool connectable, bool discoverab
     advdata.flags     = !whitelist && discoverable
                       ? BLE_GAP_ADV_FLAG_BR_EDR_NOT_SUPPORTED | BLE_GAP_ADV_FLAG_LE_GENERAL_DISC_MODE
                       : BLE_GAP_ADV_FLAG_BR_EDR_NOT_SUPPORTED;
+
+    ble_uuid_t adv_uuids[] = {0xf005, 1};
+    advdata.uuids_complete.uuid_cnt = 1;
+    advdata.uuids_complete.p_uuids = adv_uuids;
             
     microbit_ble_configureAdvertising( connectable, discoverable, whitelist, interval_ms, timeout_seconds, &advdata);
 }

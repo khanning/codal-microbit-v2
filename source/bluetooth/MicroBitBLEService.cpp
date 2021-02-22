@@ -83,7 +83,8 @@ void MicroBitBLEService::CreateService( uint16_t uuid)
     ble_uuid_t serviceUUID;
     
     serviceUUID.uuid = uuid;
-    serviceUUID.type = bs_uuid_type;
+    // serviceUUID.type = bs_uuid_type;
+    serviceUUID.type = 1;
 
     MICROBIT_BLE_ECHK( sd_ble_gatts_service_add( BLE_GATTS_SRVC_TYPE_PRIMARY, &serviceUUID, &bs_service_handle));
     
